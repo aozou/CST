@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                     this is description,yes
                    DESC
 
-  s.homepage     = "https://github.com/aozou/CST/tree/master/ZAPhotBrowser"
+  s.homepage     = "https://github.com/aozou/CST"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/aozou/CST/tree/master/ZAPhotBrowser/photoBrowser.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/aozou/CST.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
