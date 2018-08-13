@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84D3ACAB21215B5800174C06 /* WYNewMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D3ACAA21215B5800174C06 /* WYNewMainHeaderView.m */; };
 		84EE4E471FD7EC020066A022 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE4E461FD7EC020066A022 /* main.m */; };
 		84EE4E4A1FD7EC020066A022 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE4E491FD7EC020066A022 /* AppDelegate.m */; };
 		84EE4E4D1FD7EC020066A022 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE4E4C1FD7EC020066A022 /* ViewController.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84D3ACA921215B5800174C06 /* WYNewMainHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNewMainHeaderView.h; sourceTree = "<group>"; };
+		84D3ACAA21215B5800174C06 /* WYNewMainHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNewMainHeaderView.m; sourceTree = "<group>"; };
 		84EE4E421FD7EC020066A022 /* ZAPhotBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZAPhotBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EE4E461FD7EC020066A022 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84EE4E481FD7EC020066A022 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,6 +42,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84D3ACA821215B5800174C06 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				84D3ACA921215B5800174C06 /* WYNewMainHeaderView.h */,
+				84D3ACAA21215B5800174C06 /* WYNewMainHeaderView.m */,
+			);
+			path = Code;
+			sourceTree = SOURCE_ROOT;
+		};
 		84EE4E391FD7EC020066A022 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +74,7 @@
 				84EE4E491FD7EC020066A022 /* AppDelegate.m */,
 				84EE4E4B1FD7EC020066A022 /* ViewController.h */,
 				84EE4E4C1FD7EC020066A022 /* ViewController.m */,
+				84D3ACA821215B5800174C06 /* Code */,
 				84EE4E4E1FD7EC020066A022 /* Main.storyboard */,
 				84EE4E511FD7EC020066A022 /* Assets.xcassets */,
 				84EE4E531FD7EC020066A022 /* LaunchScreen.storyboard */,
@@ -154,6 +167,7 @@
 				84EE4E4D1FD7EC020066A022 /* ViewController.m in Sources */,
 				84EE4E4A1FD7EC020066A022 /* AppDelegate.m in Sources */,
 				84EE4E471FD7EC020066A022 /* main.m in Sources */,
+				84D3ACAB21215B5800174C06 /* WYNewMainHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

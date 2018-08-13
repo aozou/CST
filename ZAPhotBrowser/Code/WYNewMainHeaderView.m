@@ -8,6 +8,15 @@
 
 #import "WYNewMainHeaderView.h"
 
+#define RGB(r, g, b) \
+[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define KScreenWidth  [[UIScreen mainScreen] bounds].size.width            //屏幕宽度
+#define KScreenHeight [[UIScreen mainScreen] bounds].size.height          //屏幕高度
+
+
 @interface WYNewMainHeaderView()<UIScrollViewDelegate> {
     UILabel                 *_orderNotyLabel;        //消息数
     UILabel                 *_orderAllCountLabel;    //总工单数
@@ -39,7 +48,7 @@
 - (void)onCreatUI
 {
     //底图
-    UIImageView *bgImgaeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, KScaleHeight(160))];
+    UIImageView *bgImgaeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, (160.0))];
     bgImgaeView.backgroundColor = UIColorFromRGB(0x4474eb);
     [self addSubview:bgImgaeView];
     
@@ -50,12 +59,12 @@
     //******************************************
     //消息
     UIImage *notyImg = [UIImage imageNamed:@"home-icon-nav-new"];
-    UIImageView *notymgaeView = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(bgImgaeView.frame)-KScaleWidth(22)-KScaleWidth(20), KScaleHeight(35), KScaleWidth(22), KScaleWidth(22))];
+    UIImageView *notymgaeView = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(bgImgaeView.frame)-(22)-(20), (35), (22), (22))];
     notymgaeView.image = notyImg;
     [self addSubview:notymgaeView];
     
     if (!_orderNotyLabel) {
-        _orderNotyLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMidX(notymgaeView.frame), CGRectGetMinY(notymgaeView.frame)-KScaleHeight(7), KScaleWidth(16), KScaleHeight(16))];
+        _orderNotyLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMidX(notymgaeView.frame), CGRectGetMinY(notymgaeView.frame)-(7), (16), (16))];
         _orderNotyLabel.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:9];
         _orderNotyLabel.textColor = RGB(255, 255, 255);
         _orderNotyLabel.text = @"0";
@@ -76,9 +85,9 @@
     //******************************************
     //总工单数
     if (!_orderAllCountLabel) {
-        _orderAllCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(KScaleWidth(43), KScaleHeight(80), KScaleWidth(52), KScaleHeight(37))];
+        _orderAllCountLabel = [[UILabel alloc]initWithFrame:CGRectMake((43), (80), (52), (37))];
         if ([UIScreen mainScreen].bounds.size.width <= 320) {
-            _orderAllCountLabel.frame = CGRectMake(KScaleWidth(43), KScaleHeight(75), KScaleWidth(58), KScaleHeight(48));
+            _orderAllCountLabel.frame = CGRectMake((43), (75), (58), (48));
         }
         _orderAllCountLabel.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:50];
         _orderAllCountLabel.textColor = RGB(255, 255, 255);
@@ -89,7 +98,7 @@
     
     //总工单类型
     if (!_orderAllTypeLabel) {
-        _orderAllTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_orderAllCountLabel.frame)+KScaleWidth(10), CGRectGetMinY(_orderAllCountLabel.frame), KScaleWidth(100), KScaleHeight(20))];
+        _orderAllTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_orderAllCountLabel.frame)+(10), CGRectGetMinY(_orderAllCountLabel.frame), (100), (20))];
         _orderAllTypeLabel.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:12];
         _orderAllTypeLabel.textColor = RGB(255, 255, 255);
         _orderAllTypeLabel.text = @"当前任务";
@@ -104,7 +113,7 @@
     NSString *timeStr = [formatter stringFromDate:date];
     
     if (!_orderTimeLabel) {
-        _orderTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(_orderAllTypeLabel.frame), CGRectGetMaxY(_orderAllCountLabel.frame)-KScaleHeight(20), CGRectGetWidth(_orderAllTypeLabel.frame), KScaleHeight(20))];
+        _orderTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(_orderAllTypeLabel.frame), CGRectGetMaxY(_orderAllCountLabel.frame)-(20), CGRectGetWidth(_orderAllTypeLabel.frame), (20))];
         _orderTimeLabel.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:12];
         _orderTimeLabel.textColor = RGB(255, 255, 255);
         _orderTimeLabel.text = timeStr;
@@ -114,7 +123,7 @@
     
     //内容
     if (!_contentScrollView) {
-        _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, KScaleHeight(130), KScreenWidth, KScaleHeight(70)+KScaleHeight(20))];
+        _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, (130), KScreenWidth, (70)+(20))];
         _contentScrollView.showsVerticalScrollIndicator = NO;
         _contentScrollView.showsHorizontalScrollIndicator = NO;
         _contentScrollView.backgroundColor = [UIColor clearColor];
@@ -126,7 +135,7 @@
     [self addSubview:_contentScrollView];
     
     if (!_pageContrl) {
-        _pageContrl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentScrollView.frame)-KScaleHeight(10), KScreenWidth, KScaleHeight(10))];
+        _pageContrl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentScrollView.frame)-(10), KScreenWidth, (10))];
         _pageContrl.currentPage = 0;
         _pageContrl.backgroundColor = [UIColor clearColor];
         _pageContrl.pageIndicatorTintColor = [RGB(105, 105, 105)colorWithAlphaComponent:0.75];
@@ -147,7 +156,7 @@
     for (int i=0; i<localArray.count; i++) {
         NSDictionary *dic = [localArray objectAtIndex:i];
         
-        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(KScaleWidth(15)+CGRectGetWidth(_contentScrollView.frame)*i, 0, CGRectGetWidth(_contentScrollView.frame)-KScaleWidth(15)*2, CGRectGetHeight(_contentScrollView.frame)-KScaleHeight(20))];
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake((15)+CGRectGetWidth(_contentScrollView.frame)*i, 0, CGRectGetWidth(_contentScrollView.frame)-(15)*2, CGRectGetHeight(_contentScrollView.frame)-(20))];
         bgView.backgroundColor = [UIColor whiteColor];
         bgView.layer.cornerRadius = 5.;
 //        bgView.layer.masksToBounds = YES;
@@ -167,7 +176,7 @@
             //总工单以及frame自适应
             _orderAllCountLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"currentTask"]];
             
-            CGFloat itemWidth = [_orderAllCountLabel.text boundingRectWithSize:CGSizeMake(1000, CGRectGetHeight(_orderAllCountLabel.frame)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFang-SC-Regular" size:50]} context:nil].size.width+KScaleWidth(10);
+            CGFloat itemWidth = [_orderAllCountLabel.text boundingRectWithSize:CGSizeMake(1000, CGRectGetHeight(_orderAllCountLabel.frame)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFang-SC-Regular" size:50]} context:nil].size.width+(10);
             _orderAllCountLabel.frame = CGRectMake(_orderAllCountLabel.frame.origin.x, _orderAllCountLabel.frame.origin.y, itemWidth, _orderAllCountLabel.frame.size.height);
             _orderAllTypeLabel.frame = CGRectMake(CGRectGetMaxX(_orderAllCountLabel.frame), _orderAllTypeLabel.frame.origin.y, _orderAllTypeLabel.frame.size.width, _orderAllTypeLabel.frame.size.height);
             _orderTimeLabel.frame = CGRectMake(CGRectGetMinX(_orderAllTypeLabel.frame), _orderTimeLabel.frame.origin.y, _orderTimeLabel.frame.size.width, _orderTimeLabel.frame.size.height);
@@ -180,21 +189,21 @@
         
         CGFloat itemWidth = 1. * CGRectGetWidth(bgView.frame) / count;
         for (int j=0; j<count; j++) {
-            UILabel *contentLb = [[UILabel alloc]initWithFrame:CGRectMake(itemWidth*j, KScaleHeight(10), itemWidth, KScaleHeight(22))];
+            UILabel *contentLb = [[UILabel alloc]initWithFrame:CGRectMake(itemWidth*j, (10), itemWidth, (22))];
             contentLb.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:18];
             contentLb.textColor = RGB(51, 51, 51);
             contentLb.text = @"0";
             contentLb.textAlignment = NSTextAlignmentCenter;
             [bgView addSubview:contentLb];
             
-            UILabel *contentDetailLb = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(contentLb.frame), CGRectGetMaxY(contentLb.frame), itemWidth, KScaleHeight(20))];
+            UILabel *contentDetailLb = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(contentLb.frame), CGRectGetMaxY(contentLb.frame), itemWidth, (20))];
             contentDetailLb.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:12];
             contentDetailLb.textColor = RGB(153, 153, 153);
             contentDetailLb.text = @"";
             contentDetailLb.textAlignment = NSTextAlignmentCenter;
             [bgView addSubview:contentDetailLb];
             
-            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(itemWidth*j, KScaleHeight(16), 1, KScaleHeight(38))];
+            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(itemWidth*j, (16), 1, (38))];
             lineView.backgroundColor = [[UIColor lightGrayColor]colorWithAlphaComponent:.35];
             lineView.hidden = NO;
             [bgView addSubview:lineView];
@@ -432,7 +441,7 @@
         }
         
         //总数量以及工单类型,时间自适应
-        CGFloat itemWidth = [_orderAllCountLabel.text boundingRectWithSize:CGSizeMake(1000, CGRectGetHeight(_orderAllCountLabel.frame)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFang-SC-Regular" size:50]} context:nil].size.width+KScaleWidth(10);
+        CGFloat itemWidth = [_orderAllCountLabel.text boundingRectWithSize:CGSizeMake(1000, CGRectGetHeight(_orderAllCountLabel.frame)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFang-SC-Regular" size:50]} context:nil].size.width+(10);
         _orderAllCountLabel.frame = CGRectMake(_orderAllCountLabel.frame.origin.x, _orderAllCountLabel.frame.origin.y, itemWidth, _orderAllCountLabel.frame.size.height);
         _orderAllTypeLabel.frame = CGRectMake(CGRectGetMaxX(_orderAllCountLabel.frame), _orderAllTypeLabel.frame.origin.y, _orderAllTypeLabel.frame.size.width, _orderAllTypeLabel.frame.size.height);
         _orderTimeLabel.frame = CGRectMake(CGRectGetMinX(_orderAllTypeLabel.frame), _orderTimeLabel.frame.origin.y, _orderTimeLabel.frame.size.width, _orderTimeLabel.frame.size.height);
