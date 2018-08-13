@@ -8,14 +8,6 @@
 
 #import "WYNewMainHeaderView.h"
 
-#define RGB(r, g, b) \
-[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
-
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
-#define KScreenWidth  [[UIScreen mainScreen] bounds].size.width            //屏幕宽度
-
-
 @interface WYNewMainHeaderView()<UIScrollViewDelegate> {
     UILabel                 *_orderNotyLabel;        //消息数
     UILabel                 *_orderAllCountLabel;    //总工单数
@@ -43,12 +35,13 @@
     return self;
 }
 
+
 #pragma mark - UI
 - (void)onCreatUI
 {
     //底图
     UIImageView *bgImgaeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, (160.0))];
-    bgImgaeView.backgroundColor = UIColorFromRGB(0x4474eb);
+    bgImgaeView.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:bgImgaeView];
     
     UIImageView *bgImgaeView2 = [[UIImageView alloc]initWithFrame:bgImgaeView.bounds];
@@ -65,7 +58,7 @@
     if (!_orderNotyLabel) {
         _orderNotyLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMidX(notymgaeView.frame), CGRectGetMinY(notymgaeView.frame)-(7), (16), (16))];
         _orderNotyLabel.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:9];
-        _orderNotyLabel.textColor = RGB(255, 255, 255);
+        _orderNotyLabel.textColor = [UIColor lightGrayColor];
         _orderNotyLabel.text = @"0";
         _orderNotyLabel.textAlignment = NSTextAlignmentCenter;
         _orderNotyLabel.backgroundColor = [UIColor redColor];
@@ -89,7 +82,7 @@
             _orderAllCountLabel.frame = CGRectMake((43), (75), (58), (48));
         }
         _orderAllCountLabel.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:50];
-        _orderAllCountLabel.textColor = RGB(255, 255, 255);
+        _orderAllCountLabel.textColor = [UIColor lightGrayColor];
         _orderAllCountLabel.text = @"0";
         _orderAllCountLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -99,7 +92,7 @@
     if (!_orderAllTypeLabel) {
         _orderAllTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_orderAllCountLabel.frame)+(10), CGRectGetMinY(_orderAllCountLabel.frame), (100), (20))];
         _orderAllTypeLabel.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:12];
-        _orderAllTypeLabel.textColor = RGB(255, 255, 255);
+        _orderAllTypeLabel.textColor = [UIColor lightGrayColor];
         _orderAllTypeLabel.text = @"当前任务";
         _orderAllTypeLabel.textAlignment = NSTextAlignmentLeft;
     }
@@ -114,7 +107,7 @@
     if (!_orderTimeLabel) {
         _orderTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(_orderAllTypeLabel.frame), CGRectGetMaxY(_orderAllCountLabel.frame)-(20), CGRectGetWidth(_orderAllTypeLabel.frame), (20))];
         _orderTimeLabel.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:12];
-        _orderTimeLabel.textColor = RGB(255, 255, 255);
+        _orderTimeLabel.textColor = [UIColor lightGrayColor];
         _orderTimeLabel.text = timeStr;
         _orderTimeLabel.textAlignment = NSTextAlignmentLeft;
     }
@@ -122,7 +115,7 @@
     
     //内容
     if (!_contentScrollView) {
-        _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, (130), KScreenWidth, (70)+(20))];
+        _contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, (130), [[UIScreen mainScreen] bounds].size.width, (70)+(20))];
         _contentScrollView.showsVerticalScrollIndicator = NO;
         _contentScrollView.showsHorizontalScrollIndicator = NO;
         _contentScrollView.backgroundColor = [UIColor clearColor];
@@ -130,15 +123,15 @@
         _contentScrollView.bounces = NO;
         _contentScrollView.delegate = self;
     }
-    _contentScrollView.contentSize = CGSizeMake(KScreenWidth*_dataArray.count, CGRectGetHeight(_contentScrollView.frame));
+    _contentScrollView.contentSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width*_dataArray.count, CGRectGetHeight(_contentScrollView.frame));
     [self addSubview:_contentScrollView];
     
     if (!_pageContrl) {
-        _pageContrl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentScrollView.frame)-(10), KScreenWidth, (10))];
+        _pageContrl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentScrollView.frame)-(10), [[UIScreen mainScreen] bounds].size.width, (10))];
         _pageContrl.currentPage = 0;
         _pageContrl.backgroundColor = [UIColor clearColor];
-        _pageContrl.pageIndicatorTintColor = [RGB(105, 105, 105)colorWithAlphaComponent:0.75];
-        _pageContrl.currentPageIndicatorTintColor = UIColorFromRGB(0x4475EB);
+        _pageContrl.pageIndicatorTintColor = [UIColor lightGrayColor];
+        _pageContrl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     }
     _pageContrl.numberOfPages = _dataArray.count;
     [self addSubview:_pageContrl];
@@ -161,7 +154,7 @@
 //        bgView.layer.masksToBounds = YES;
         bgView.layer.borderColor = [[UIColor lightGrayColor]colorWithAlphaComponent:.15].CGColor;
         bgView.layer.borderWidth = 1.;
-        bgView.layer.shadowColor = [RGB(127, 127, 127) colorWithAlphaComponent:1.15].CGColor;
+        bgView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
         bgView.layer.shadowOffset = CGSizeMake(3, 3);
         bgView.layer.shadowRadius = 4;
         bgView.layer.shadowOpacity = 0.3;
@@ -190,14 +183,14 @@
         for (int j=0; j<count; j++) {
             UILabel *contentLb = [[UILabel alloc]initWithFrame:CGRectMake(itemWidth*j, (10), itemWidth, (22))];
             contentLb.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:18];
-            contentLb.textColor = RGB(51, 51, 51);
+            contentLb.textColor = [UIColor lightGrayColor];
             contentLb.text = @"0";
             contentLb.textAlignment = NSTextAlignmentCenter;
             [bgView addSubview:contentLb];
             
             UILabel *contentDetailLb = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(contentLb.frame), CGRectGetMaxY(contentLb.frame), itemWidth, (20))];
             contentDetailLb.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:12];
-            contentDetailLb.textColor = RGB(153, 153, 153);
+            contentDetailLb.textColor = [UIColor lightGrayColor];
             contentDetailLb.text = @"";
             contentDetailLb.textAlignment = NSTextAlignmentCenter;
             [bgView addSubview:contentDetailLb];
