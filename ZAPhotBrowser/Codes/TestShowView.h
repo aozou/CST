@@ -11,5 +11,6 @@
 @interface TestShowView : UIView
 
 -(void)onShow;
+-(void)onOpen;
 
 @end
