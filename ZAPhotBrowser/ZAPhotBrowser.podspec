@@ -1,4 +1,4 @@
-@version = "1.1.3"
+@version = "1.1.2"
 Pod::Spec.new do |s|
     s.name = "ZAPhotBrowser"
     s.version = @version
