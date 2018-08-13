@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:/Users/jiangminjie/Documents/&#x9879;&#x76ee;/&#x6d4b;&#x8bd5;/ZAPhotBrowser/ZAPhotBrowser/ZAPhotBrowser/Codes"
+      name = "Codes">
+      <FileRef
+         location = "group:TestShowView.h">
+      </FileRef>
+      <FileRef
+         location = "group:TestShowView.m">
+      </FileRef>
+   </Group>
    <FileRef
-      location = "self:ZAPhotBrowser.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
